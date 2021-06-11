@@ -1,0 +1,73 @@
+import React, { useRef } from 'react'
+import { Animated,Dimensions,View} from 'react-native';
+import Swiper from 'react-native-web-swiper';
+import styled from 'styled-components/native';
+import { Emphasis } from '../common/common';
+import Detail from './projects/Detail';
+
+// const width = Dimensions.get('window').width;
+// const height = Dimensions.get('window').height;
+
+const MainContainer = styled.View`
+    background-color:black;
+    height:100%;
+    width:100%;
+    
+`
+const Container1 = styled.View`
+background-color:blue;
+width:100%;
+height:100%;
+`;
+
+const Container2 = styled.View`
+background-color:red;
+width:100%;
+height:100%;
+`;
+
+const Container3 = styled.View`
+background-color:yellow;
+width:100%;
+height:100%;
+`;
+
+
+
+const Hi = styled.View`
+    background-color:yellowgreen;
+    width:50px;
+`
+
+const Button = styled.TouchableOpacity``;
+
+
+const Text = styled.Text``;
+
+const Project = () => {
+
+    return (
+        <MainContainer>
+        <Emphasis name="My Projects"/>
+        <Swiper
+        controlsEnabled={false}
+        // containerStyle={{
+            // height:'50%',
+            // backgroundColor:'red'         
+        // }}
+        // innerContainerStyle={{
+            // height:height/3,
+            // backgroundColor:'red'
+        // }}
+        // loop
+        // timeout={1}
+        >
+            <Detail/>
+            <Container2></Container2>
+            <Container3></Container3>
+        </Swiper>
+        </MainContainer>
+    )
+}
+
+export default Project;

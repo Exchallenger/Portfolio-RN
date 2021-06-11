@@ -1,21 +1,38 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {getStatusBarHeight} from 'react-native-status-bar-height';
+import React, { useState } from 'react';
+import { Dimensions } from 'react-native';
+import styled from 'styled-components/native';
+import After from './main/After';
+import Before from './main/Before';
+
+const height = Dimensions.get('screen').height;
+
+console.log(getStatusBarHeight());
+
+const sHeight = getStatusBarHeight() >= 21 ? getStatusBarHeight() : 0;
+
+const Container = styled.View`
+  height:${height}px;
+  background-color:#121212;
+  padding-top:${sHeight/3}px;
+`
 
 export default function App() {
+  const [status, setStatus] = useState(true);
+  const changeStatus = () => {
+    setTimeout(() => {
+      setStatus(false);
+    }, 5000);
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+    <StatusBar style='light'/>
+    <Container>
+      {status ? <Before changeStatus={changeStatus}/> : <After/>}
+    </Container>
+    </>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
